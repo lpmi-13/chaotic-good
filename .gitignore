@@ -1,0 +1,6 @@
+# terraform artifacts
+.terraform
+*.lock*
+*id_rsa*
+*.ed25519
+plan

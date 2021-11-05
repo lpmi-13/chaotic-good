@@ -21,6 +21,26 @@ We'll need temporary access credentials (a few different ways to do this, so nee
 
 This will be fully automated via terraform, and maybe even using terraform cloud, since it's free up to 5 users. We also need some way to tear everything down at the end, but still working out the best way to do this (probably just manually from the terraform cloud console).
 
+*UPDATE:* For now, this is going to be in separate steps, since I don't feel like fighting ansible with the terraform provisioners, at the moment, and wrapping it all in a shell script is going to effectively get me to one command deploy/configuration anyway.
+
+### steps
+
+first, create some ssh keys for the instances:
+
+```
+bash create-keys.sh
+```
+
+then the terraform provisioning in this file:
+```
+bash apply.sh
+```
+
+...and to tear down everything at the end:
+```
+bash destroy.sh
+```
+
 ## Tests
 
 - make sure we have billing alerts enabled
