@@ -1,3 +1,4 @@
+# this backend is in terraform cloud, just for storing state
 terraform {
   backend "remote" {
     organization = "chaotic-good"

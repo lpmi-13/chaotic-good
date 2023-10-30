@@ -10,7 +10,7 @@ resource "aws_vpc" "dungeon" {
 resource "aws_internet_gateway" "ig" {
   vpc_id = aws_vpc.dungeon.id
   tags = {
-    Name = "dungeon-ig"
+    Name        = "dungeon-ig"
     Environment = "dungeon"
   }
 }
@@ -34,8 +34,8 @@ resource "aws_route_table_association" "public" {
 }
 
 resource "aws_subnet" "public_subnet" {
-  vpc_id = aws_vpc.dungeon.id
-  cidr_block = "10.0.1.0/24"
+  vpc_id                  = aws_vpc.dungeon.id
+  cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
 
   tags = {
@@ -45,5 +45,5 @@ resource "aws_subnet" "public_subnet" {
 
 # just a place-holder until I can decide on something more permanent
 resource "aws_route53_zone" "main" {
-  name = "chaotic-good.com"
+  name = "chaotic-good.org"
 }
