@@ -1,23 +1,12 @@
-# this backend is in terraform cloud, just for storing state
-terraform {
-  backend "remote" {
-    organization = "chaotic-good"
-
-    workspaces {
-      name = "terraform-cli"
-    }
-  }
-}
-
 terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.27"
+      version = ">= 5.0"
     }
   }
 
-  required_version = ">= 0.14.9"
+  required_version = ">= 1.5.6"
 }
 
 provider "aws" {
