@@ -4,3 +4,4 @@
 *id_rsa*
 *.ed25519
 plan
+node_modules
