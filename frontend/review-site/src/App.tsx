@@ -20,7 +20,7 @@ function App() {
             <main>
                 <div className="review-container">
                     {SAMPLE_REVIEWS.map((review) => (
-                        <Review reviewText={review} />
+                        <Review key={review} reviewText={review} />
                     ))}
                 </div>
             </main>
