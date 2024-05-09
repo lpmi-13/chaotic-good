@@ -80,10 +80,12 @@ The easiest thing to do would be to target scenarios that involve failures based
 Based on the above, the very simple outline of the scenarios we'll be targeting for the MVP are as follows:
 
 -   Database (either RDS or self-hosted on EC2) gets overloaded and can't respond fast enough to prevent 5XXs from the application server.
+-   The database runs out of connections and stops responding to requests.
 -   A security group gets updated and takes down the connection between the application and the data backing service.
 -   One of the EC2 instances (or we might also play around with ECS a bit) crashes (maybe cause it's a long running instance and the underlying hardware fails, or AWS just decides to move the VM).
 -   Something (either VM or container) fills up with logs and can't write, then crashes
--   On ECS (EC2 launch type), we can simulate not having enough EC2 instance resources in our cluster to scale along with load, and then we start sending back 5XXs (similar to the Database issue, but at the application level)
+-   On EKS (EC2 instance type), we can simulate not having enough EC2 instance resources in our cluster to scale along with load, and then we start sending back 5XXs (similar to the Database issue, but at the application level)
+-   Similar to above, but with IP address space (it's possible that both would require very tiny EC2 instances, and be triggered the same way, so potentially not worth doing as separate scenarios).
 
 ## Feedback
 
