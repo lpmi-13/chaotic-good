@@ -37,6 +37,14 @@ We'll need temporary access credentials (a few different ways to do this, so nee
 
 ## Provisioning
 
+### SSO Access
+
+Because we'll want to grant access to users via SSO on the chaotic-good.org domain, we need SSO set up to do that. The flow for configuring Google Workspace and IAM Identity Center is not (currently) automated, so that needs to be done via click-ops, unfortunately.
+
+However, once that's all set up and working, I highly recommend using the tooling at `granted.dev` to set up the `assume` command for ease of access in both the terminal and the browser. I also recommend pairing `aws-sso-util` with this to ease configuration of your profiles locally in `~/.aws/config`.
+
+### Resources
+
 This will be fully automated via terraform, and maybe even using terraform cloud, since it's free up to 5 users. We also need some way to tear everything down at the end, but still working out the best way to do this (probably just manually from the terraform cloud console).
 
 _UPDATE:_ For now, this is going to be in separate steps, since I don't feel like fighting ansible with the terraform provisioners, at the moment, and wrapping it all in a shell script is going to effectively get me to one command deploy/configuration anyway.
