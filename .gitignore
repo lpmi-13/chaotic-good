@@ -1,5 +1,6 @@
 # terraform artifacts
 .terraform
+*tfstate*
 *.lock*
 *id_rsa*
 *.ed25519
