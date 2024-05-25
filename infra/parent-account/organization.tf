@@ -1,7 +1,8 @@
 resource "aws_organizations_organization" "main" {
 
-  # we might want a few other principals once everything is up and running, but this is fine for now
   aws_service_access_principals = [
+    # we'll want cloudtrail once we need to set up the org trail
+    # "cloudtrail.amazonaws.com",
     "sso.amazonaws.com"
   ]
 
@@ -24,6 +25,8 @@ resource "aws_organizations_organizational_unit" "chaotic-good" {
 resource "aws_organizations_account" "chaotic-good" {
   name = "chaotic-good"
   # pull this out to a variable later
+  # since you can't re-use an email address if/when you close an account, make sure
+  # that all your testing is complete before you settle on the final value for this
   email = "chaotic-admin+test@chaotic-good.org"
 
   # Enables IAM users to access account billing information
@@ -38,3 +41,18 @@ resource "aws_organizations_account" "chaotic-good" {
 
   parent_id = aws_organizations_organizational_unit.chaotic-good.id
 }
+
+# use this when we're ready to set up a test role that shouldn't be able to do anything "admin"
+# data "aws_iam_policy_document" "example" {
+#   statement {
+# effect    = "Deny"
+# actions   = ["iam:*", "ec2:*", "rds:*"]
+# resources = ["arn:aws:iam::*:role/role-to-deny"]
+#   }
+# }
+# 
+# resource "aws_organizations_policy" "example" {
+#   name    = "example"
+#   content = data.aws_iam_policy_document.example.json
+#   type    = "SERVICE_CONTROL_POLICY"
+# }
