@@ -13,7 +13,7 @@ const reviews: Reviews = {
         id: 2,
         reviewer: 'Bob',
         rating: 2,
-        comment: 'This things was not very good',
+        comment: 'This thing was not very good',
     },
     3: {
         id: 3,
