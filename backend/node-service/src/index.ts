@@ -11,6 +11,12 @@ if (!process.env.PORT) {
 }
 
 const PORT: number = parseInt(process.env.PORT as string, 10);
+let ENVIRONMENT: String;
+if (!process.env.ENVIRONMENT) {
+    ENVIRONMENT = 'staging';
+} else {
+    ENVIRONMENT = process.env.ENVIRONMENT;
+}
 
 const app = express();
 
@@ -20,7 +26,5 @@ app.use(express.json());
 app.use('/api/reviews', reviewsRouter);
 
 app.listen(PORT, () => {
-    console.log(
-        `app live in ${process.env.ENVIRONMENT}, listening on port: ${PORT}`
-    );
+    console.log(`app live in ${ENVIRONMENT}, listening on port: ${PORT}`);
 });
