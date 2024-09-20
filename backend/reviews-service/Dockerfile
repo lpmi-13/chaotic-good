@@ -15,4 +15,6 @@ EXPOSE 8001
 ENV PORT=8001
 ENV ENVIRONMENT=production
 
+USER node
+
 CMD ["node", "index.js"]
