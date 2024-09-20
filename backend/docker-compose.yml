@@ -1,0 +1,29 @@
+services:
+  app:
+    build:
+      context: ./reviews-service
+    container_name: reviews-service
+    depends_on:
+      - db
+    ports:
+      - "8001:8001"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/mydatabase
+      - ENVIRONMENT=dev
+      - PORT=8001
+
+  # PostgreSQL database container
+  db:
+    image: postgres:14
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: reviews
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
