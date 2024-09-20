@@ -89,6 +89,7 @@ Based on the above, the very simple outline of the scenarios we'll be targeting 
 
 -   Database (either RDS or self-hosted on EC2) gets overloaded and can't respond fast enough to prevent 5XXs from the application server.
 -   The database runs out of connections and stops responding to requests.
+-   The production database gets dropped/deleted/other, and needs to be restored from backup.
 -   A security group gets updated and takes down the connection between the application and the data backing service.
 -   One of the EC2 instances (or we might also play around with ECS a bit) crashes (maybe cause it's a long running instance and the underlying hardware fails, or AWS just decides to move the VM).
 -   Something (either VM or container) fills up with logs and can't write, then crashes
