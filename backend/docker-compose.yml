@@ -8,20 +8,23 @@ services:
     ports:
       - "8001:8001"
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/mydatabase
       - ENVIRONMENT=dev
       - PORT=8001
 
   # PostgreSQL database container
   db:
-    image: postgres:14
+    image: postgres:14-alpine
     container_name: postgres_db
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: postgres 
       POSTGRES_PASSWORD: postgres
+      USER: developer
+      USER_PASSWORD: weaksauce
       POSTGRES_DB: reviews
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./reviews-service/sql/create_database.sh:/docker-entrypoint-initdb.d/create_database.sh
+      - ./reviews-service/sql/create_table.sh:/docker-entrypoint-initdb.d/create_table.sh
     ports:
       - "5432:5432"
 
